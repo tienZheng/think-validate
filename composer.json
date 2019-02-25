@@ -1,0 +1,17 @@
+{
+    "name": "tien\/think-validate",
+    "description": "ThinkPhp5数扩展包",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "tienZheng",
+            "email": "913346548@qq.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Tien\\ThinkValidate\\": "./src/"
+        }
+    }
+}
