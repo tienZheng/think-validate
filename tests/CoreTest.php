@@ -10,6 +10,7 @@ namespace Tien\ThinkValidate\Tests;
 
 
 use PHPUnit\Framework\TestCase;
+use Tien\ThinkValidate\Core;
 use Tien\ThinkValidate\exceptions\Exception;
 use Tien\ThinkValidate\TCore;
 
@@ -18,7 +19,20 @@ class CoreTest extends TestCase
 
     public function getTCoreObj()
     {
-        return new TCore();
+        //return new TCore();
+        $coreObj = $this->getObjectForTrait(Core::class);
+        $coreObj->rule = [
+            'id|标识符' => 'require|gt:0',
+            'name|姓名' => 'require|max:16',
+            'mobile|手机号' => 'require|mobile',
+            'token|密钥' => 'require|length:32'
+        ];
+        $coreObj->scene = [
+            'create' => ['id', 'name', 'mobile', 'token', 'tien_strict'],
+            'update' => ['id', 'token', 'name_no', 'mobile_no', 'tien_min_3', 'tien_max_4'],
+            'show'   => ['id', 'token', 'error'],
+        ];
+        return $coreObj;
     }
 
 
