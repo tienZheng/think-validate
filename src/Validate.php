@@ -9,7 +9,7 @@
 namespace Tien\ThinkValidate;
 
 
-use Tien\ThinkSwagger\exceptions\Exception;
+use Tien\ThinkValidate\exceptions\Exception;
 use Tien\ThinkValidate\exceptions\TypeStringException;
 
 class Validate
@@ -132,9 +132,63 @@ class Validate
 
         if ($result !== true) {
             $this->errorMsg = $this->validateObj->getError();
+            return $result;
         }
-        return $result;
+
+        //checkTienStrict
+        if (!$this->checkTienStrict()) {
+            return false;
+        }
+
+        //checkTienMaxNum
+        if (!$this->checkTienMaxNum()) {
+            return false;
+        }
+
+        if (!$this->checkTienMinNum()) {
+            return false;
+        }
+
     }
+
+    protected function checkTienStrict()
+    {
+        if ($this->validateObj->getTiemStrictBool()) {
+            $illegalKeys = array_diff(array_keys($this->param), $this->validateObj->getCheckRule());
+            if (!empty($illegalKeys)) {
+                $this->errorMsg = implode(',', $illegalKeys) . '是非法参数字符';
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    protected function checkTienMaxNum()
+    {
+        $max = $this->validateObj->getTienMaxNum();
+        if ($max && count($this->param) > $max) {
+            $this->errorMsg = '参数的个数不能大于' . $max;
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * :
+     *
+     * @return bool
+     */
+    protected function checkTienMinNum()
+    {
+        $min = $this->validateObj->getTienMinNum();
+        if ($min && count($this->param) < $min) {
+            $this->errorMsg = '参数的个数不能小于' . $min;
+            return false;
+        }
+        return true;
+    }
+
 
     /**
      * :

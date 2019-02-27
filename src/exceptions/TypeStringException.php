@@ -8,7 +8,6 @@
 
 namespace Tien\ThinkValidate\exceptions;
 
-use Tien\ThinkSwagger\exceptions\Exception;
 
 class TypeStringException extends Exception
 {

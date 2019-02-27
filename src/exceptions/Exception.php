@@ -6,7 +6,7 @@
  * Time: 6:33 PM.
  */
 
-namespace Tien\ThinkSwagger\exceptions;
+namespace Tien\ThinkValidate\exceptions;
 
 class Exception extends \Exception
 {

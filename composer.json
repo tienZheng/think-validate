@@ -8,7 +8,9 @@
             "email": "913346548@qq.com"
         }
     ],
-    "require": {},
+    "require": {
+        "phpunit/phpunit": "^8.0"
+    },
     "autoload": {
         "psr-4": {
             "Tien\\ThinkValidate\\": "./src/"
