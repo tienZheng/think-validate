@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 use Tien\ThinkValidate\exceptions\Exception;
 use Tien\ThinkValidate\Validate;
 
-class TestValidate extends TestCase
+class ValidateTest extends TestCase
 {
 
     public function getValidateObj()

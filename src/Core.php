@@ -124,7 +124,12 @@ trait Core
         return $this->checkRule;
     }
 
-
+    /**
+     * :
+     *
+     * @param $str
+     * @throws TypeStringException
+     */
     public function setTienMax($str)
     {
         if (!is_string($str)) {
@@ -133,6 +138,12 @@ trait Core
         $this->tienMax = $str;
     }
 
+    /**
+     * :
+     *
+     * @param $str
+     * @throws TypeStringException
+     */
     public function setTienMin($str)
     {
         if (!is_string($str)) {

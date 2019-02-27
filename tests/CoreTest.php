@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 use Tien\ThinkValidate\exceptions\Exception;
 use Tien\ThinkValidate\TCore;
 
-class TestCore extends TestCase
+class CoreTest extends TestCase
 {
 
     public function getTCoreObj()
@@ -68,7 +68,7 @@ class TestCore extends TestCase
         $this->assertSame(3, $minNum);
 
         //断定 max
-        $maxNum = $core->getTiemMaxNum();
+        $maxNum = $core->getTienMaxNum();
         $this->assertSame(4, $maxNum);
 
         //断定 strict
