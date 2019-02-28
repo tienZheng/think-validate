@@ -44,6 +44,13 @@ class Validate
 
     protected $errorMsg = '';
 
+    /**
+     * 验证规则为空是否继续
+     *
+     * @var bool
+     */
+    protected $emptyIsContinue = false;
+
 
     public function __construct($request)
     {
@@ -69,6 +76,16 @@ class Validate
         }
 
         $this->validateClass = $className;
+    }
+
+    /**
+     * :
+     *
+     * @param $continue
+     */
+    public function setEmptyIsContinue($continue)
+    {
+        $this->emptyIsContinue = $continue;
     }
 
     /**
@@ -128,7 +145,12 @@ class Validate
         //获取需要检验的规则
         $validateRule = $this->validateObj->getRuleByAction($this->action);
 
-        $result =  $this->validateObj->check($this->param, $validateRule);
+        //如果验证规则为空，且为空时不执行
+        if (empty($validateRule) && false === $this->emptyIsContinue) {
+            return true;
+        }
+
+        $result = $this->validateObj->check($this->param, $validateRule);
 
         if ($result !== true) {
             $this->errorMsg = $this->validateObj->getError();
