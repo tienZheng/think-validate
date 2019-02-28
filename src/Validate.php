@@ -170,7 +170,7 @@ class Validate
         if (!$this->checkTienMinNum()) {
             return false;
         }
-
+        return $result;
     }
 
     protected function checkTienStrict()
